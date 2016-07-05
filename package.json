@@ -8,6 +8,9 @@
     "test": "ava test/test.js && npm run lint",
     "lint": "eslint ."
   },
+  "engines": {
+    "node": "6"
+  },
   "files": [
     "bin",
     "lib"

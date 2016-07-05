@@ -2,7 +2,9 @@
 
 `parse5` backed unclosed markup checker.
 
-# Usage api
+_Requires node version 6._
+
+## Usage api
 
 ```javascript
 
@@ -16,7 +18,7 @@ check('<div><a></div>')
 ```
 
 
-# Usage cli
+## Usage cli
 
 
 ```bash
