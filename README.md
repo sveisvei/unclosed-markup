@@ -12,10 +12,15 @@ _Requires node version 6._
 
 const check = require('unclosed-markup');
 
+// content as a string
 check('<div><a></div>')
     .then(() => {})
     .catch(e => console.error(e));
 
+// or with a readstream as input
+check(readstream)
+    .then(() => {})
+    .catch(e => console.error(e));
 ```
 
 
