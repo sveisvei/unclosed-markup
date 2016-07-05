@@ -1,5 +1,7 @@
 # Unclosed markup
 
+[![Build Status](https://travis-ci.org/sveisvei/unclosed-markup.svg?branch=master)](https://travis-ci.org/sveisvei/unclosed-markup)
+
 `parse5` backed unclosed markup checker.
 
 _Requires node version 6._
