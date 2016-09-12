@@ -35,6 +35,6 @@
   "devDependencies": {
     "ava": "^0.15.2",
     "eslint": "^3.0.0",
-    "eslint-config-finn": "^1.0.0-alpha.7"
+    "eslint-config-finn": "1.0.0-alpha.11"
   }
 }

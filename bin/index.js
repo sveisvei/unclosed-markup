@@ -20,8 +20,8 @@ function run (input) {
     validateHtml(input).catch(errors => {
         // report on errors
         errors.forEach(e => {
-            let nr = e.line.line;
-            let lineDebug = [
+            const nr = e.line.line;
+            const lineDebug = [
                 { line: nr - 1, content: e.line.code.before },
                 { line: nr,     content: (e.line.code.current).bold.underline },
                 { line: nr + 1, content: e.line.code.after },
