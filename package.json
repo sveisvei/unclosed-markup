@@ -4,6 +4,7 @@
   "description": "check markup for unclosed tags",
   "bin": "bin/index.js",
   "main": "lib/index.js",
+  "repository": "sveisvei/unclosed-markup",
   "scripts": {
     "test": "ava test/test.js && npm run lint",
     "lint": "eslint ."
