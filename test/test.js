@@ -49,6 +49,14 @@ test('should report errors with a string', (t) => {
     });
 });
 
+test('should handle array of files', (t) => {
+    const content = ['<div></div>', '<div></div>'];
+
+    return validate(content).then((result) => {
+        t.deepEqual(result, [true, true]);
+    });
+});
+
 test('should report on deep errors', (t) => {
     const content = '<u><div><p><div><u><span><div></span></div></p></div></u>';
 

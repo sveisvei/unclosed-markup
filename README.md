@@ -21,6 +21,11 @@ check('<div><a></div>')
 check(readstream)
     .then(() => {})
     .catch(errors => console.error(errors));
+
+// arrays are also supported
+check(['<div><a></div>', '<div><a></div>'])
+    .then(() => {})
+    .catch(errors => console.error(errors));
 ```
 
 
