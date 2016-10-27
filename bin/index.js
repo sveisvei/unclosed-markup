@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 'use strict';
+
 require('colors');
 const validateHtml = require('../lib/index');
 const argv = require('yargs').argv;
