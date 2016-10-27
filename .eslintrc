@@ -2,5 +2,8 @@
     "extends": [
         "finn",
         "finn/node"
-    ]
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2017
+    }
 }
