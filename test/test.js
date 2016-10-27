@@ -1,4 +1,5 @@
 'use strict';
+
 const test = require('ava');
 const { Readable } = require('stream');
 const validate = require('../lib/index');
