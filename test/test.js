@@ -16,91 +16,95 @@ function createFakeStream (data) {
 }
 
 
-test('should report errors with a stream', (t) => {
+test('should report errors with a stream', async (t) => {
+    t.plan(1);
     const stream = createFakeStream('<div><a href><span><div></span></div>');
 
-    return validate(stream).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(stream);
+    } catch (e) {
         t.is(e.length, 2);
-    });
+    }
 });
 
-test('should report errors with a fs filestream', (t) => {
+test('should report errors with a fs filestream', async (t) => {
+    t.plan(1);
     const stream = fs.createReadStream('./fixtures/file.html');
 
-    return validate(stream).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(stream);
+    } catch (e) {
         t.is(e.length, 2);
-    });
+    }
 });
 
 
-test('should report errors with a string', (t) => {
+test('should report errors with a string', async (t) => {
+    t.plan(1);
     const content = '<div><a href><span><div></span></div>';
 
-    return validate(content).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(content);
+    } catch (e) {
         t.is(e.length, 2);
-    });
+    }
 });
 
-test('should handle array of files', (t) => {
+test('should handle array of files', async (t) => {
     const content = ['<div></div>', '<div></div>'];
 
-    return validate(content).then((result) => {
-        t.deepEqual(result, [true, true]);
-    });
+    const result = await validate(content);
+
+    t.deepEqual(result, [true, true]);
 });
 
-test('should report on deep errors', (t) => {
+test('should report on deep errors', async (t) => {
+    t.plan(1);
     const content = '<u><div><p><div><u><span><div></span></div></p></div></u>';
 
-    return validate(content).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(content);
+    } catch (e) {
         t.is(e.length, 2);
-    });
+    }
 });
 
-test('should report on top errors', (t) => {
+test('should report on top errors', async (t) => {
     const content = '<div>';
 
-    return validate(content).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(content);
+    } catch (e) {
         t.is(e.length, 1);
-    });
+    }
 });
 
-test('should report on mangled errors', (t) => {
+test('should report on mangled errors', async (t) => {
     const content = '><div>>>';
 
-    return validate(content).then((result) => {
-        t.false(result);
-    })
-    .catch(e => {
+    try {
+        await validate(content);
+    } catch (e) {
         t.is(e.length, 1);
-    });
+    }
 });
 
 
-test('should not report error on void elements', () => (validate('<br><br>')));
+test('should not report error on void elements', (t) => {
+    t.notThrows(validate('<br><br>'));
+});
 
-test('should take void elements as input', () => (
-    validate('<customTag><customTag2>', { voidElements: { customtag: true, customtag2: true } })
-));
 
-test('error object', (t) => {
+test('should take void elements as input', (t) => {
+    t.notThrows(validate('<customTag><customTag2>', { voidElements: { customtag: true, customtag2: true } }));
+});
+
+test('error object', async (t) => {
     t.plan(3);
-    return validate('<div><a></div>').catch(e => {
+
+    try {
+        await validate('<div><a></div>');
+    } catch (e) {
         t.is(e.length, 1);
         const error = e[0];
         t.is(typeof error, 'object');
@@ -114,5 +118,5 @@ test('error object', (t) => {
                 line: 1, code: { before: '', current: '<div><a></div>', after: '' }, start: 5, end: 8,
             },
         });
-    });
+    }
 });
